@@ -1,0 +1,28 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: emptydir-volume
+spec:
+  containers:
+  - name: main
+    image: centos:7
+    command:
+      - "bin/bash"
+      - "-c"
+      - "sleep 10000"
+    volumeMounts:
+      - name: share
+        mountPath: "/tmp/share"
+  - name: support
+    image: centos:7
+    command:
+      - "bin/bash"
+      - "-c"
+      - "sleep 10000"
+    volumeMounts:
+     - name: share
+       mountPath: "/tmp/data"
+  volumes:
+    - name: share
+      emptyDir:
+        {}

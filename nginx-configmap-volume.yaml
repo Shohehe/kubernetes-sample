@@ -1,0 +1,17 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx-configmap-volume
+spec:
+  containers:
+  - name: web
+    image: nginx:alpine
+    volumeMounts:
+      - name: config
+        mountPath: /etc/nginx/conf.d
+        readOnly: true
+  volumes:
+    - name: config
+      configMap:
+        name: nginx-custom
+
